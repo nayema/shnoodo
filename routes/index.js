@@ -1,9 +1,15 @@
 const express = require('express')
 const router = express.Router()
 
-/* GET home page. */
+/* GET task list */
 router.get('/', function (req, res, next) {
-  res.render('index', { title: 'Hello Shah' })
+  res.render('index')
+})
+
+/* POST new task */
+router.post('/', function (req, res, next) {
+  let newTaskName = req.body['new-task-name']
+  res.render('index', { tasks: [newTaskName] })
 })
 
 module.exports = router

@@ -4,8 +4,8 @@ describe('shnoodo', function () {
   it('is able to add a task', async function () {
     await page.open()
 
-    const result = await page.title
+    await page.addTask('some task')
 
-    expect(result).toEqual('Hello Shah')
+    expect(await page.content).toContain('some task')
   })
 })
