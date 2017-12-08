@@ -11,6 +11,22 @@ describe('shnoodo', function () {
     await hasTaskNamed('some task')
   })
 
+  it('is able to remove a task', async function () {
+    await addTask('existing task')
+
+    await removeTask('existing task')
+
+    await doesNotHaveTask('existing task')
+  })
+
+  async function removeTask (taskName) {
+    await page.removeTask(taskName)
+  }
+
+  async function doesNotHaveTask (taskName) {
+    expect(await page.content).not.toContain(taskName)
+  }
+
   async function addTask (taskName) {
     await page.addTask(taskName)
   }

@@ -9,6 +9,14 @@ class HomePage extends Page {
   get content () {
     return Page.browser.getText('body')
   }
+
+  async removeTask (taskName) {
+    await Page.browser
+      .element('td=' + taskName)
+      .element('..')
+      .element('button.remove-button')
+      .click()
+  }
 }
 
 export default new HomePage()
