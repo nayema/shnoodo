@@ -1,37 +1,29 @@
-<style>
-    header {
-        background-color: maroon;
-        padding: auto;
-        color: white;
-        text-align: center;
-    }
-    #new-task-name {
-        color: black;
-        width: 80%;
-    }
-</style>
-<header>
+<div class="container">
     <h2 class="text-center">Shnoodo List</h2>
     <form action="/" method="post" class="form-inline">
-        <div class="row" class="container-fluid">
-            <input type="text" id="new-task-name" name="new-task-name" placeholder="Task"/>
-            <button id="add-task-button" class="btn btn-primary">Add Task</button>
-        </div>
+        <input type="text" id="new-task-name" name="new-task-name" placeholder="Task"/>
+        <button id="add-task-button" class="btn btn-primary">Add Task</button>
     </form>
-</header>
-<table width="100%" class="table table-responsive table-stripped table-hover">
-    <tbody>
-    {{#each tasks}}
+    <table class="table table-hover">
+        <thead class="thead-dark">
         <tr>
-            <td>{{ this }}</td>
-            <td align="right">
-                <form action="">
-                    <button class="btn btn-danger remove-button">
-                        <i class="fa fa-times" aria-hidden="true"></i>
-                    </button>
-                </form>
-            </td>
+            <th scope="col">Task Name</th>
+            <th scope="col">Action</th>
         </tr>
-    {{/each}}
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+        {{#each tasks}}
+            <tr>
+                <td>{{ this }}</td>
+                <td align="right">
+                    <form action="">
+                        <button class="btn btn-danger remove-button">
+                            <i class="fa fa-times" aria-hidden="true"></i>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        {{/each}}
+        </tbody>
+    </table>
+</div>
