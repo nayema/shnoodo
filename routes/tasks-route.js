@@ -1,16 +1,6 @@
 const express = require('express')
 const router = express.Router()
-
-class TasksController {
-  static getTaskList (req, res) {
-    res.render('tasks/index')
-  }
-
-  static createTask (req, res) {
-    let newTaskName = req.body['new-task-name']
-    res.render('tasks/index', { tasks: [newTaskName] })
-  }
-}
+const TasksController = require('../controllers/tasks-controller')
 
 router.get('/', TasksController.getTaskList)
 router.post('/', TasksController.createTask)
