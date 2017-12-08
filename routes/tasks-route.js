@@ -3,13 +3,13 @@ const router = express.Router()
 
 /* GET task list */
 router.get('/', function (req, res, next) {
-  res.render('index')
+  res.render('tasks/index')
 })
 
 /* POST new task */
 router.post('/', function (req, res, next) {
   let newTaskName = req.body['new-task-name']
-  res.render('index', { tasks: [newTaskName] })
+  res.render('tasks/index', { tasks: [newTaskName] })
 })
 
 module.exports = router
