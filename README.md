@@ -1,2 +1,2 @@
 # shnoodo
-A simple to-do app developed with node.js and express.js.
+A simple to-do app developed with React and Redux.
