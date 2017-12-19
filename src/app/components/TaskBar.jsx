@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
 import FontAwesome from 'react-fontawesome'
+import KeyPress from 'react-keypress'
 
 class TaskBar extends Component {
   constructor (props) {
     super(props)
 
-    this.addTaskOnClick = this.addTaskOnClick.bind(this)
+    this.addTaskOnClickOrPress = this.addTaskOnClickOrPress.bind(this)
   }
 
-  addTaskOnClick () {
+  addTaskOnClickOrPress () {
     const newTaskInput = document.getElementById('new-task')
     this.props.addTask(newTaskInput.value)
     newTaskInput.value = ''
@@ -24,10 +25,14 @@ class TaskBar extends Component {
               className="form-control mb-2 mb-sm-0"
               id="new-task"
               placeholder="Add your task here"
+              onKeyPress={KeyPress('enter', this.addTaskOnClickOrPress)}
             />
           </div>
           <div className="col-auto">
-            <button className="btn btn-primary" onClick={this.addTaskOnClick}>
+            <button
+              className="btn btn-primary"
+              onClick={this.addTaskOnClickOrPress}
+            >
               <FontAwesome name="plus"/>
             </button>
           </div>
