@@ -12,7 +12,9 @@ function reducer (state = BLANK_STATE, action) {
     }
     case ActionTypes.DELETE_TASK: {
       const oldTasks = state.tasks
-      const newTasks = oldTasks.filter((task) => task !== action.payload.taskName)
+      const newTasks = oldTasks.slice()
+      const index = oldTasks.indexOf(action.payload.taskName)
+      newTasks.splice(index, 1)
       return {
         tasks: newTasks
       }
