@@ -9,7 +9,7 @@ class TaskList extends Component {
           <caption>List of tasks</caption>
           <tbody>
             {this.props.tasks.map(task =>
-              <tr>
+              <tr key={task}>
                 <td>{task}</td>
                 <td align="right">
                   <button
