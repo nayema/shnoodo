@@ -6,7 +6,6 @@ class TaskList extends Component {
     return (
       <div className="container">
         <table className="table table-hover col">
-          <caption>List of tasks</caption>
           <tbody>
             {this.props.tasks.map(task =>
               <tr key={task}>
