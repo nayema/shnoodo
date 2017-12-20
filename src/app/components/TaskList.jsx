@@ -8,12 +8,12 @@ class TaskList extends Component {
         <table className="table table-hover col">
           <tbody>
             {this.props.tasks.map(task =>
-              <tr key={task}>
-                <td>{task}</td>
+              <tr key={task.name}>
+                <td>{task.name}</td>
                 <td align="right">
                   <button
                     className="btn btn-danger remove-button"
-                    onClick={() => this.props.deleteTask(task)}
+                    onClick={() => this.props.deleteTask(task.name)}
                   >
                     <FontAwesome name="trash"/>
                   </button>
