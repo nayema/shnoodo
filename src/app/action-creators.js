@@ -1,19 +1,23 @@
 import ActionTypes from './action-types'
 
-function addTask (taskName) {
+function addTask (name) {
   return {
     type: ActionTypes.ADD_TASK,
     payload: {
-      taskName: taskName
+      task: {
+        name: name
+      }
     }
   }
 }
 
-function deleteTask (taskName) {
+function deleteTask (name) {
   return {
     type: ActionTypes.DELETE_TASK,
     payload: {
-      taskName: taskName
+      task: {
+        name: name
+      }
     }
   }
 }
