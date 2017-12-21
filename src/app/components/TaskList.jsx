@@ -1,13 +1,17 @@
 import React, { Component } from 'react'
 import FontAwesome from 'react-fontawesome'
+import classNames from 'classnames'
+
+import './TaskList.css'
 
 class TaskList extends Component {
   render () {
     const Task = (props) => {
+      const taskClasses = classNames({
+        'completedTask': props.completed === true
+      })
       return (
-        <span
-          style={props.completed ? { textDecoration: 'line-through' } : { textDecoration: 'none' }}
-        >{props.name}</span>
+        <span className={taskClasses}>{props.name}</span>
       )
     }
     return (

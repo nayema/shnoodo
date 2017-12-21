@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAAA,cAAe;EACb,eAAe,EAAE,YAAY",
-"sources": ["TaskList.scss"],
-"names": [],
-"file": "TaskList.css"
-}
