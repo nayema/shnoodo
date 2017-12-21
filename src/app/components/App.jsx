@@ -17,6 +17,7 @@ class App extends Component {
         <TaskList
           tasks={this.props.state.tasks}
           deleteTask={this.props.actions.deleteTask}
+          completeTask={this.props.actions.completeTask}
         />
       </div>
     )

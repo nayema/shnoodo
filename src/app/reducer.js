@@ -17,6 +17,15 @@ function reducer (state = BLANK_STATE, action) {
         tasks: newTasks
       }
     }
+    case ActionTypes.COMPLETE_TASK: {
+      const oldTasks = state.tasks
+      const otherTasks = oldTasks.filter((task) => task.name !== action.payload.task.name)
+      const taskToComplete = oldTasks.filter((task) => task.name === action.payload.task.name)[0]
+      taskToComplete.completed = true
+      return {
+        tasks: otherTasks.concat(taskToComplete)
+      }
+    }
     default:
       return state
   }

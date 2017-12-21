@@ -3,13 +3,25 @@ import FontAwesome from 'react-fontawesome'
 
 class TaskList extends Component {
   render () {
+    const Task = (props) => {
+      return (
+        <span
+          style={props.completed ? { textDecoration: 'line-through' } : { textDecoration: 'none' }}
+        >{props.name}</span>
+      )
+    }
     return (
       <div className="container">
         <table className="table table-hover col">
           <tbody>
             {this.props.tasks.map(task =>
               <tr key={task.name}>
-                <td>{task.name}</td>
+                <td onClick={() => this.props.completeTask(task.name)}>
+                  <Task
+                    name={task.name}
+                    completed={task.completed}
+                  />
+                </td>
                 <td align="right">
                   <button
                     className="btn btn-danger remove-button"
