@@ -7,9 +7,9 @@ import './TaskList.css'
 class TaskList extends Component {
   render () {
     const Task = (props) => {
-      const taskClasses = classNames({
-        'completedTask': props.completed === true
-      })
+      const taskClasses = classNames(
+        { 'completedTask': props.completed === true }
+      )
       return (
         <span className={taskClasses}>{props.name}</span>
       )
@@ -20,7 +20,7 @@ class TaskList extends Component {
           <tbody>
             {this.props.tasks.map(task =>
               <tr key={task.name}>
-                <td onClick={() => this.props.completeTask(task.name)}>
+                <td className="task" onClick={() => this.props.completeTask(task.name)}>
                   <Task
                     name={task.name}
                     completed={task.completed}

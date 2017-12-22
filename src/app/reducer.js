@@ -5,7 +5,13 @@ const BLANK_STATE = { tasks: [] }
 function reducer (state = BLANK_STATE, action) {
   switch (action.type) {
     case ActionTypes.ADD_TASK: {
-      const newTasks = state.tasks.concat(action.payload.task)
+      const oldTasks = state.tasks
+      if (action.payload.task.name === '') {
+        return {
+          tasks: oldTasks
+        }
+      }
+      const newTasks = oldTasks.concat(action.payload.task)
       return {
         tasks: newTasks
       }
