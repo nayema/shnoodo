@@ -4,43 +4,61 @@ import classNames from 'classnames'
 
 import './TaskList.css'
 
-class TaskList extends Component {
-  render () {
-    const Task = (props) => {
-      const taskClasses = classNames(
-        { 'completedTask': props.completed === true }
-      )
-      return (
-        <span className={taskClasses}>{props.name}</span>
-      )
-    }
+const TaskList = ({ tasks, completeTask, deleteTask }) => {
+  const Task = ({ task }) => {
+    const taskClasses = classNames(
+      { 'completedTask': task.completed === true }
+    )
     return (
-      <div className="container">
+      <div className={taskClasses}>{task.name}</div>
+    )
+  }
+
+  const TaskRow = ({ task }) => {
+    return (
+      <tr>
+        <td className="task" onClick={() => completeTask(task.name)}>
+          <Task task={task}/>
+        </td>
+        <td align="right">
+          <button
+            className="btn btn-danger remove-button"
+            onClick={() => deleteTask(task.name)}
+          >
+            <FontAwesome name="trash"/>
+          </button>
+        </td>
+      </tr>
+    )
+  }
+
+  const TaskTable = ({ header, tasks }) => {
+    return (
+      <div>
+        <h5>{header}</h5>
         <table className="table table-hover col">
           <tbody>
-            {this.props.tasks.map(task =>
-              <tr key={task.name}>
-                <td className="task" onClick={() => this.props.completeTask(task.name)}>
-                  <Task
-                    name={task.name}
-                    completed={task.completed}
-                  />
-                </td>
-                <td align="right">
-                  <button
-                    className="btn btn-danger remove-button"
-                    onClick={() => this.props.deleteTask(task.name)}
-                  >
-                    <FontAwesome name="trash"/>
-                  </button>
-                </td>
-              </tr>
+            {tasks.map(task =>
+              <TaskRow key={task.name} task={task}/>
             )}
           </tbody>
         </table>
       </div>
     )
   }
+
+  return (
+    <div className="container">
+      <TaskTable
+        header="Incomplete tasks"
+        tasks={tasks.filter(task => task.completed !== true)}
+      />
+      <TaskTable
+        header="Completed tasks"
+        tasks={tasks.filter(task => task.completed === true)}
+      />
+    </div>
+  )
 }
 
 export default TaskList
