@@ -22,4 +22,15 @@ function deleteTask (name) {
   }
 }
 
-export default { addTask, deleteTask }
+function completeTask (name) {
+  return {
+    type: ActionTypes.COMPLETE_TASK,
+    payload: {
+      task: {
+        name: name
+      }
+    }
+  }
+}
+
+export default { addTask, deleteTask, completeTask }
