@@ -5,9 +5,6 @@ const BLANK_STATE = { tasks: [] }
 function reducer (state = BLANK_STATE, action) {
   switch (action.type) {
     case ActionTypes.ADD_TASK: {
-<<<<<<< HEAD
-      const newTasks = state.tasks.concat(action.payload.task)
-=======
       const oldTasks = state.tasks
       if (action.payload.task.name === '') {
         return {
@@ -15,7 +12,6 @@ function reducer (state = BLANK_STATE, action) {
         }
       }
       const newTasks = oldTasks.concat(action.payload.task)
->>>>>>> complete-task
       return {
         tasks: newTasks
       }
