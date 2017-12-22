@@ -37,8 +37,23 @@ const TaskList = ({ tasks, completeTask, deleteTask }) => {
       <div>
         <table className="table table-hover col">
           <tbody>
+<<<<<<< HEAD
+            {this.props.tasks.map(task =>
+              <tr key={task.name}>
+                <td>{task.name}</td>
+                <td align="right">
+                  <button
+                    className="btn btn-danger remove-button"
+                    onClick={() => this.props.deleteTask(task.name)}
+                  >
+                    <FontAwesome name="trash"/>
+                  </button>
+                </td>
+              </tr>
+=======
             {tasks.map(task =>
               <TaskRow key={task.name} task={task}/>
+>>>>>>> complete-task
             )}
           </tbody>
         </table>
