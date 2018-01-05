@@ -1,28 +1,33 @@
 import * as actionTypes from './action-types'
 
 const BLANK_STATE = {
-  tasks: []
+  tasks: [],
+  newTaskName: ''
 }
 
 function reducer (state = BLANK_STATE, action) {
   switch (action.type) {
     case actionTypes.ADD_TASK: {
-      if (action.payload.task.name === '') {
-        const oldTasks = state.tasks
-        return {
-          tasks: oldTasks
-        }
+      if (action.payload.name === '') {
+        return state
       }
-      const newTasks = state.tasks.concat(action.payload.task)
       return {
-        tasks: newTasks
+        ...state,
+        tasks: state.tasks.concat(action.payload.task),
+        newTaskName: ''
+      }
+    }
+    case actionTypes.CHANGE_NEW_TASK_NAME: {
+      return {
+        ...state,
+        newTaskName: action.payload.newTaskName
       }
     }
     case actionTypes.DELETE_TASK: {
       const oldTasks = state.tasks
-      const newTasks = oldTasks.filter((task) => task.name !== action.payload.task.name)
       return {
-        tasks: newTasks
+        ...state,
+        tasks: oldTasks.filter((task) => task.name !== action.payload.task.name)
       }
     }
     case actionTypes.COMPLETE_TASK: {
@@ -30,9 +35,9 @@ function reducer (state = BLANK_STATE, action) {
       const otherTasks = oldTasks.filter((task) => task.name !== action.payload.task.name)
       const taskToComplete = oldTasks.filter((task) => task.name === action.payload.task.name)[0]
       taskToComplete.completed = true
-      const newTasks = otherTasks.concat(taskToComplete)
       return {
-        tasks: newTasks
+        ...state,
+        tasks: otherTasks.concat(taskToComplete)
       }
     }
     default:

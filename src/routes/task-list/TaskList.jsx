@@ -5,7 +5,7 @@ import KeyPress from 'react-keypress'
 
 import './TaskList.css'
 
-const TaskBar = ({ addTask }) => (
+const TaskBar = ({ newTaskName, addTask, changeNewTaskName }) => (
   <div className="container">
     <div className="row">
       <div className="col">
@@ -14,13 +14,15 @@ const TaskBar = ({ addTask }) => (
           className="form-control mb-2 mb-sm-0"
           id="new-task"
           placeholder="Add your task here"
+          onChange={(e) => changeNewTaskName(e.target.value)}
           onKeyPress={KeyPress('enter', (e) => addTask(e.target.value))}
+          value={newTaskName}
         />
       </div>
       <div className="col-auto">
         <button
           className="btn btn-primary"
-          onClick={() => {addTask(document.getElementById('new-task').valueOf())}}
+          onClick={() => {addTask(newTaskName)}}
         >
           <FontAwesome name="plus"/>
         </button>
@@ -71,10 +73,12 @@ const TaskTable = ({ tasks, deleteTask, completeTask }) => (
   </div>
 )
 
-const TaskList = ({ tasks, addTask, deleteTask, completeTask }) => (
+const TaskList = ({ tasks, newTaskName, addTask, changeNewTaskName, deleteTask, completeTask }) => (
   <div>
     <TaskBar
       addTask={addTask}
+      newTaskName={newTaskName}
+      changeNewTaskName={changeNewTaskName}
     />
     <div className="container">
       <nav className="nav nav-tabs" id="myTab" role="tablist">

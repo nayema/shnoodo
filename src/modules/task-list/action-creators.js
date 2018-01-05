@@ -1,34 +1,36 @@
 import * as actionTypes from './action-types'
 
-export function addTask (name) {
-  return {
-    type: actionTypes.ADD_TASK,
-    payload: {
-      task: {
-        name: name
-      }
+export const addTask = (name) => ({
+  type: actionTypes.ADD_TASK,
+  payload: {
+    task: {
+      name: name
     }
   }
-}
+})
 
-export function deleteTask (name) {
-  return {
-    type: actionTypes.DELETE_TASK,
-    payload: {
-      task: {
-        name: name
-      }
-    }
+export const changeNewTaskName = (newTaskName) => ({
+  type: actionTypes.CHANGE_NEW_TASK_NAME,
+  payload: {
+    newTaskName
   }
-}
+})
 
-export function completeTask (name) {
-  return {
-    type: actionTypes.COMPLETE_TASK,
-    payload: {
-      task: {
-        name: name
-      }
+export const deleteTask = (name) => ({
+  type: actionTypes.DELETE_TASK,
+  payload: {
+    task: {
+      name: name
     }
   }
-}
+
+})
+
+export const completeTask = (name) => ({
+  type: actionTypes.COMPLETE_TASK,
+  payload: {
+    task: {
+      name: name
+    }
+  }
+})
