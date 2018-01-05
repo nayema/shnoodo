@@ -8,7 +8,7 @@ const BLANK_STATE = {
 function reducer (state = BLANK_STATE, action) {
   switch (action.type) {
     case actionTypes.ADD_TASK: {
-      if (action.payload.name === '') {
+      if (action.payload.task.name === '') {
         return state
       }
       return {
