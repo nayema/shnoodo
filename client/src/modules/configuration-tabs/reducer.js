@@ -1,20 +1,16 @@
+import { handleActions } from 'redux-actions'
+
 import * as actionTypes from './action-types'
 
 const initialState = {
   activeTabIndex: 0
 }
 
-function reducer (state = initialState, action) {
-  switch (action.type) {
-    case actionTypes.CHANGE_CONFIG_TAB: {
-      return {
-        ...state,
-        activeTabIndex: action.payload.changeToTabIndex
-      }
-    }
-    default:
-      return state
-  }
-}
+const reducer = handleActions({
+  [actionTypes.CHANGE_CONFIG_TAB]: (state, action) => ({
+    ...state,
+    activeTabIndex: action.payload
+  })
+}, initialState)
 
 export default reducer

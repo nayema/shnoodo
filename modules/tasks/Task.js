@@ -1,4 +1,4 @@
-const Model = require('../common-model/model')
+const Model = require('../common/model')
 
 class Task extends Model {
   static get tableName () {

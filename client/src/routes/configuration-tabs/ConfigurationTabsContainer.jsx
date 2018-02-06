@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import * as configurationTabs from '../../modules/configuration-tabs'
-import * as taskList from '../../modules/task-list'
+import * as taskList from '../../modules/tasks'
 
 import ConfigurationTabs from './ConfigurationTabs'
 

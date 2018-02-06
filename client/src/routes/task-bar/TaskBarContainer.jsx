@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import * as taskList from '../../modules/task-list/index'
+import * as taskList from '../../modules/tasks/index'
 import TaskBar from './TaskBar'
 
 function mapStateToProps (state) {
