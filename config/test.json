@@ -1,0 +1,7 @@
+{
+  "db": {
+    "connection": {
+      "database": "shnoodo_test"
+    }
+  }
+}

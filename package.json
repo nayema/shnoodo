@@ -1,43 +1,61 @@
 {
-  "name": "shnoodo",
+  "name": "are-we-okay",
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "PORT=3001 nodemon ./bin/www",
+    "test": "node_modules/.bin/jest --watch",
+    "migrate-all-rollback": "NODE_ENV=test knex migrate:rollback && knex migrate:rollback",
+    "migrate-all-latest": "NODE_ENV=test knex migrate:latest && knex migrate:latest",
+    "migrate-all-redo": "npm run migrate-all-rollback && npm run migrate-all-latest"
   },
   "dependencies": {
     "body-parser": "~1.18.2",
+    "config": "^1.29.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "express": "~4.15.5",
-    "jade": "~1.11.0",
+    "knex": "^0.14.2",
+    "luxon": "^0.4.0",
     "morgan": "~1.9.0",
+    "objection": "^0.9.4",
+    "pg": "^7.4.1",
     "serve-favicon": "~2.4.5"
   },
   "devDependencies": {
-    "@types/jest": "^22.1.1",
+    "@types/jest": "^21.1.8",
     "@types/supertest": "^2.0.4",
-    "babel-eslint": "^8.2.1",
+    "babel-eslint": "^7.2.3",
     "babel-preset-env": "^1.6.1",
-    "eslint": "^4.17.0",
-    "eslint-config-react-app": "^2.1.0",
-    "eslint-config-standard": "^11.0.0-beta.0",
-    "eslint-plugin-flowtype": "^2.42.0",
+    "eslint": "^4.14.0",
+    "eslint-config-react-app": "^2.0.1",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-flowtype": "^2.40.1",
     "eslint-plugin-import": "^2.8.0",
-    "eslint-plugin-jsx-a11y": "^6.0.3",
-    "eslint-plugin-node": "^6.0.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-node": "^5.2.1",
     "eslint-plugin-promise": "^3.6.0",
-    "eslint-plugin-react": "^7.6.1",
+    "eslint-plugin-react": "^7.5.1",
     "eslint-plugin-standard": "^3.0.1",
-    "jest": "^22.1.4",
-    "nodemon": "^1.14.12",
-    "stylelint": "^8.4.0",
+    "jest": "^21.2.1",
+    "node-pg-migrate": "^2.17.0",
+    "nodemon": "^1.12.1",
+    "postcss-sass": "^0.2.0",
+    "standard": "^10.0.3",
+    "stylelint": "^8.3.1",
     "stylelint-config-standard": "^18.0.0",
     "supertest": "^3.0.0"
   },
   "babel": {
     "presets": [
-      "env"
+      [
+        "env",
+        {
+          "targets": {
+            "node": "current"
+          }
+        }
+      ]
     ]
   },
   "eslintConfig": {
