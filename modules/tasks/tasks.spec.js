@@ -15,7 +15,8 @@ describe('tasks', () => {
 
     expect(response.statusCode).toBe(200)
     const tasks = response.body
-    expect(tasks[0]).toEqual(expect.objectContaining({ 'name': 'Some Task' }))
+    expect(tasks[0]).toHaveProperty('id')
+    expect(tasks[0]).toEqual(expect.objectContaining({ 'name': 'Some Task', 'category': 'Some Category' }))
   })
 
   it('adds a new task', async () => {
@@ -27,8 +28,9 @@ describe('tasks', () => {
       .send(task)
 
     expect(response.statusCode).toBe(200)
-    const tasks = await Task.query()
-    expect(tasks[0]).toEqual(expect.objectContaining({
+    const taskResponse = response.body
+    expect(taskResponse).toHaveProperty('id')
+    expect(taskResponse).toEqual(expect.objectContaining({
       'name': 'Some Task',
       'category': 'Some Category'
     }))

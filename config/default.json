@@ -6,7 +6,7 @@
       "password": "",
       "host": "localhost",
       "port": 5432,
-      "name": "shnoodo_development"
+      "database": "shnoodo_development"
     }
   }
 }
