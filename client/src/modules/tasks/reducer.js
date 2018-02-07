@@ -44,7 +44,7 @@ const reducer = handleActions({
   }),
   [actionTypes.TOGGLE_TASK]: (state, action) => ({
     ...state,
-    tasks: state.tasks.map((task) => {
+    tasks: state.tasks.map(task => {
       if (task.id === action.payload) {
         return { ...task, completed: !task.completed}
       } else {
