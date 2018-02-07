@@ -84,4 +84,50 @@ describe('reducer', () => {
       expect(nextState).toHaveProperty('tasks', [])
     })
   })
+
+  describe('when handling filtering', () => {
+    it('toggles task to be complete', () => {
+      const previousState = {
+        tasks: [
+          { id: 7, name: 'Some Task 1' },
+          { id: 999, name: 'Some Task 2' }
+        ]
+      }
+      const toggleTaskAction = actionCreators.toggleTask(7)
+
+      const nextState = reducer(previousState, toggleTaskAction)
+
+      expect(nextState).toHaveProperty('tasks', [
+        { id: 7, name: 'Some Task 1', completed: true },
+        { id: 999, name: 'Some Task 2' }
+      ])
+    })
+
+    it('toggles task to be incomplete', () => {
+      const previousState = {
+        tasks: [
+          { id: 7, name: 'Some Task 1', completed: true },
+          { id: 999, name: 'Some Task 2' }
+        ]
+      }
+      const toggleTaskAction = actionCreators.toggleTask(7)
+
+      const nextState = reducer(previousState, toggleTaskAction)
+
+      expect(nextState).toHaveProperty('tasks', [
+        { id: 7, name: 'Some Task 1', completed: false },
+        { id: 999, name: 'Some Task 2' }
+      ])
+    })
+  })
+
+  describe('when handling setting visibility filter', () => {
+    it('sets visibility filter', () => {
+      const setVisibilityFilterAction = actionCreators.setVisibilityFilter('SHOW_COMPLETED')
+
+      const nextState = reducer(undefined, setVisibilityFilterAction)
+
+      expect(nextState).toHaveProperty('visibilityFilter', 'SHOW_COMPLETED')
+    })
+  })
 })

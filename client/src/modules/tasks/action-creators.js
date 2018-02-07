@@ -29,3 +29,12 @@ export const removeTaskSucceeded = createAction(
   actionTypes.REMOVE_TASK_SUCCEEDED,
   (task) => (task)
 )
+export const toggleTask = createAction(
+  actionTypes.TOGGLE_TASK,
+  (id) => (id)
+)
+
+export const setVisibilityFilter = createAction(
+  actionTypes.SET_VISIBILITY_FILTER,
+  (filter) => (filter)
+)

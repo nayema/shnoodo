@@ -1,8 +1,10 @@
 import { handleActions } from 'redux-actions'
 
 import * as actionTypes from './action-types'
+import * as constants from './constants'
 
 const initialState = {
+  visibilityFilter: constants.VisibilityFilters.SHOW_ALL,
   tasks: [],
   newTask: {
     name: '',
@@ -39,6 +41,20 @@ const reducer = handleActions({
   [actionTypes.REMOVE_TASK_SUCCEEDED]: (state, action) => ({
     ...state,
     tasks: state.tasks.filter(task => task.id !== action.payload.id)
+  }),
+  [actionTypes.TOGGLE_TASK]: (state, action) => ({
+    ...state,
+    tasks: state.tasks.map((task) => {
+      if (task.id === action.payload) {
+        return { ...task, completed: !task.completed}
+      } else {
+        return task
+      }
+    })
+  }),
+  [actionTypes.SET_VISIBILITY_FILTER]: (state, action) => ({
+    ...state,
+    visibilityFilter: action.payload
   })
 }, initialState)
 
