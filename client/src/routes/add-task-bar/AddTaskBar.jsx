@@ -27,29 +27,27 @@ const styles = theme => ({
 
 const categories = ['Personal', 'Work', 'Hobbies', 'Errands']
 
-const TaskBar = ({ classes, newTaskName, newTaskCategory, addTask, changeNewTaskName, changeNewTaskCategory }) => (
+const AddTaskBar = ({ classes, newTask, newTaskCategory, addTaskStarted, changeNewTask }) => (
   <div className={classes.root}>
     <Grid container spacing={24}>
       <Grid item xs>
         <TextField
-          id="full-width"
           label="Task"
           helperText="Add your task here"
           fullWidth
           margin="normal"
-          onChange={(e) => changeNewTaskName(e.target.value)}
-          onKeyPress={KeyPress('enter', (e) => addTask(e.target.value, newTaskCategory))}
-          value={newTaskName}
+          onChange={(e) => changeNewTask({ name: e.target.value })}
+          onKeyPress={KeyPress('enter', (e) => addTaskStarted(e.target.value, newTaskCategory))}
+          value={newTask.name}
         />
       </Grid>
       <Grid item xs>
         <TextField
-          id="select-currency"
           select
           label="Select"
           className={classes.textField}
-          value={newTaskCategory}
-          onChange={(e) => changeNewTaskCategory(e.target.value)}
+          onChange={(e) => changeNewTask({ category: e.target.value })}
+          value={newTask.category}
           SelectProps={{
             MenuProps: {
               className: classes.menu
@@ -66,8 +64,14 @@ const TaskBar = ({ classes, newTaskName, newTaskCategory, addTask, changeNewTask
         </TextField>
       </Grid>
       <Grid item md>
-        <Button fab mini color="primary" aria-label="add" className={classes.button}
-          onClick={() => {addTask(newTaskName, newTaskCategory)}}>
+        <Button
+          variant="fab"
+          mini
+          color="primary"
+          aria-label="add"
+          className={classes.button}
+          onClick={() => {addTaskStarted(newTask)}}
+        >
           <AddIcon/>
         </Button>
       </Grid>
@@ -75,4 +79,4 @@ const TaskBar = ({ classes, newTaskName, newTaskCategory, addTask, changeNewTask
   </div>
 )
 
-export default withStyles(styles)(TaskBar)
+export default withStyles(styles)(AddTaskBar)

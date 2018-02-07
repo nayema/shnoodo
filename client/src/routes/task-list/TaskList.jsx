@@ -25,38 +25,44 @@ const styles = theme => ({
 
 const Task = ({ task }) => {
   const taskClasses = classNames(
-    { 'completedTask': task.completed === true }
+    { 'completedTask': task.completed }
   )
   return (
-    <div className={taskClasses}>{task.name}</div>
+    <div className={taskClasses}>{task.name}, {task.category}</div>
   )
 }
 
-const TaskRow = ({ classes, task, deleteTask, completeTask }) => (
+const TaskRow = ({ classes, task, removeTaskStarted, toggleTask }) => (
   <TableRow>
-    <TableCell className="task" onClick={() => completeTask(task.name)}>
+    <TableCell className="task" onClick={() => toggleTask(task.id)}>
       <Task task={task}/>
     </TableCell>
     <TableCell numeric>
-      <Button fab mini color="accent" aria-label="delete" className={classes.button}
-        onClick={() => {deleteTask(task.name)}}>
+      <Button
+        variant="fab"
+        mini
+        color="secondary"
+        aria-label="delete"
+        className={classes.button}
+        onClick={() => removeTaskStarted(task.id)}
+      >
         <DeleteIcon/>
       </Button>
     </TableCell>
   </TableRow>
 )
 
-const TaskList = ({ classes, tasks, deleteTask, completeTask }) => (
+const TaskList = ({ classes, tasks, removeTaskStarted, toggleTask }) => (
   <div className={classes.root}>
     <Table className={classes.table}>
       <TableBody>
         {tasks.map(task =>
           <TaskRow
-            key={task.name}
+            key={task.id}
             classes={classes}
             task={task}
-            deleteTask={deleteTask}
-            completeTask={completeTask}/>)}
+            removeTaskStarted={removeTaskStarted}
+            toggleTask={toggleTask}/>)}
       </TableBody>
     </Table>
   </div>

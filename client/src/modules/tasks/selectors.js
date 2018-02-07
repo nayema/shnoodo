@@ -13,6 +13,8 @@ export const getVisibleTasks = createSelector(
         return tasks.filter(task => task.completed)
       case 'SHOW_ACTIVE':
         return tasks.filter(task => !task.completed)
+      default:
+        return tasks
     }
   }
 )

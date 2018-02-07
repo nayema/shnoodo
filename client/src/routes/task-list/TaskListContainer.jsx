@@ -2,19 +2,20 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import * as tasks from '../../modules/tasks'
-import TaskBar from './AddTaskBar'
+
+import TaskList from '../task-list/TaskList'
 
 function mapStateToProps (state) {
   return {
-    newTask: state.tasks.newTask,
+    tasks: state.tasks.tasks
   }
 }
 
 function mapDispatchToProps (dispatch) {
   return bindActionCreators({
-    addTaskStarted: tasks.actionCreators.addTaskStarted,
-    changeNewTask: tasks.actionCreators.changeNewTask
+    removeTaskStarted: tasks.actionCreators.removeTaskStarted,
+    toggleTask: tasks.actionCreators.toggleTask
   }, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(TaskBar)
+export default connect(mapStateToProps, mapDispatchToProps)(TaskList)

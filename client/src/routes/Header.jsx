@@ -5,17 +5,18 @@ import { withStyles } from 'material-ui/styles'
 const styles = () => ({
   root: {
     flexGrow: 1,
-    marginTop: 15
+    marginTop: 15,
+    textAlign: 'center'
   },
   font: {
-    fontFamily: 'Sedgwick Ave Display'
+    fontFamily: 'Indie Flower'
   }
 })
 
 const Header = ({ classes }) => (
   <div className={classes.root}>
-    <Typography type="display3" gutterBottom className={classes.font}>
-      Shnoodo Application
+    <Typography variant="display3" gutterBottom className={classes.font}>
+      Shnoodo
     </Typography>
   </div>
 )

@@ -3,11 +3,13 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "PORT=3001 nodemon ./bin/www",
+    "start": "node ./bin/www",
     "test": "node_modules/.bin/jest --watch",
+    "dev": "PORT=3001 nodemon ./bin/www",
     "migrate-all-rollback": "NODE_ENV=test knex migrate:rollback && knex migrate:rollback",
     "migrate-all-latest": "NODE_ENV=test knex migrate:latest && knex migrate:latest",
-    "migrate-all-redo": "npm run migrate-all-rollback && npm run migrate-all-latest"
+    "migrate-all-redo": "npm run migrate-all-rollback && npm run migrate-all-latest",
+    "heroku-postbuild": "node_modules/.bin/knex migrate:latest && cd client/ && npm install && npm run build"
   },
   "dependencies": {
     "body-parser": "~1.18.2",
@@ -75,5 +77,9 @@
       "<rootDir>/client/",
       "<rootDir>/tmp/"
     ]
-  }
+  },
+  "cacheDirectories": [
+    "node_modules",
+    "client/node_modules"
+  ]
 }
