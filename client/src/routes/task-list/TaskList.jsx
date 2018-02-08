@@ -34,7 +34,7 @@ const Task = ({ task }) => {
 
 const TaskRow = ({ classes, task, removeTaskStarted, toggleTask }) => (
   <TableRow>
-    <TableCell className="task" onClick={() => toggleTask(task.id)}>
+    <TableCell className="task" onClick={() => toggleTask(task)}>
       <Task task={task}/>
     </TableCell>
     <TableCell numeric>
@@ -44,7 +44,7 @@ const TaskRow = ({ classes, task, removeTaskStarted, toggleTask }) => (
         color="secondary"
         aria-label="delete"
         className={classes.button}
-        onClick={() => removeTaskStarted(task.id)}
+        onClick={() => removeTaskStarted(task)}
       >
         <DeleteIcon/>
       </Button>

@@ -85,7 +85,7 @@ describe('reducer', () => {
     })
   })
 
-  describe('when handling filtering', () => {
+  describe('when handling toggling of task completion', () => {
     it('toggles task to be complete', () => {
       const previousState = {
         tasks: [
@@ -93,7 +93,8 @@ describe('reducer', () => {
           { id: 999, name: 'Some Task 2' }
         ]
       }
-      const toggleTaskAction = actionCreators.toggleTask(7)
+      const taskToComplete = { id: 7 }
+      const toggleTaskAction = actionCreators.toggleTask(taskToComplete)
 
       const nextState = reducer(previousState, toggleTaskAction)
 
@@ -110,7 +111,8 @@ describe('reducer', () => {
           { id: 999, name: 'Some Task 2' }
         ]
       }
-      const toggleTaskAction = actionCreators.toggleTask(7)
+      const taskToUncomplete = { id: 7 }
+      const toggleTaskAction = actionCreators.toggleTask(taskToUncomplete)
 
       const nextState = reducer(previousState, toggleTaskAction)
 
