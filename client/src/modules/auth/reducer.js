@@ -1,7 +1,7 @@
 import { handleActions } from 'redux-actions'
 
 import * as actionTypes from './action-types'
-import * as AuthService from '../../utils/AuthService'
+import * as AuthService from '../../auth-utils/AuthService'
 
 const initialState = {
   isAuthenticated: !AuthService.isTokenExpired(),
