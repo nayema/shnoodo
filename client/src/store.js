@@ -32,7 +32,8 @@ const composedEnhancers = compose(
 const store = createStore(
   rootReducer,
   initialState,
-  composedEnhancers
+  composedEnhancers,
+  window.devToolsExtension ? window.devToolsExtension() : f => f
 )
 
 sagaMiddleware.run(rootSaga)
