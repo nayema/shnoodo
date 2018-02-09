@@ -3,7 +3,7 @@ import Paper from 'material-ui/Paper'
 import Grid from 'material-ui/Grid'
 import { withStyles } from 'material-ui/styles'
 
-import Header from './Header'
+import Title from './Title'
 import AddTaskBar from './add-task-bar/AddTaskBarContainer'
 import TaskList from './task-list/TaskListContainer'
 
@@ -27,7 +27,7 @@ const styles = theme => ({
 
 const App = ({ classes }) => (
   <div className={classes.root}>
-    <Header/>
+    <Title/>
     <Grid container className={classes.container} spacing={24}>
       <Grid item xs className={classes.content}>
         <Paper className={classes.paper}>

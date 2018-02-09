@@ -13,7 +13,7 @@ const styles = () => ({
   }
 })
 
-const Header = ({ classes }) => (
+const Title = ({ classes }) => (
   <div className={classes.root}>
     <Typography variant="display3" gutterBottom className={classes.font}>
       Shnoodo
@@ -21,4 +21,4 @@ const Header = ({ classes }) => (
   </div>
 )
 
-export default withStyles(styles)(Header)
+export default withStyles(styles)(Title)
