@@ -3,6 +3,8 @@ const path = require('path')
 const logger = require('morgan')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
+const jwt = require('express-jwt')
+const jwks = require('jwks-rsa')
 
 const tasksRouter = require('./modules/tasks')
 
@@ -13,15 +15,28 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
 
-app.use('/tasks', tasksRouter)
-
-const router = express.Router()
-
-app.use(express.static(path.join(__dirname, 'client/build')))
-router.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client/build', 'index.html'))
+const jwtCheck = jwt({
+  secret: jwks.expressJwtSecret({
+    cache: true,
+    rateLimit: true,
+    jwksRequestsPerMinute: 5,
+    jwksUri: 'https://nayema.auth0.com/.well-known/jwks.json'
+  }),
+  audience: 'shnoodo-development',
+  issuer: 'https://nayema.auth0.com/',
+  algorithms: ['RS256']
 })
-app.use('/', router)
+// app.use(jwtCheck)
+
+app.use('/tasks', jwtCheck, tasksRouter)
+
+// const router = express.Router()
+
+// app.use(express.static(path.join(__dirname, 'client/build')))
+// router.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'client/build', 'index.html'))
+// })
+// app.use('/', router)
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
