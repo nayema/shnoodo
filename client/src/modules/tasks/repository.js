@@ -3,7 +3,11 @@ import { camelizeKeys } from 'humps'
 import { request } from '../common'
 
 export async function getAll () {
-  const response = await fetch('/tasks/')
+  const response = await fetch('/tasks/', {
+    headers: new Headers({
+      'Authorization': `Bearer ${localStorage.getItem('idToken')}`
+    })
+  })
   return camelizeKeys(await response.json())
 }
 

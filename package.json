@@ -12,6 +12,7 @@
     "heroku-postbuild": "node_modules/.bin/knex migrate:latest && cd client/ && npm install && npm run build"
   },
   "dependencies": {
+    "node": "9.2.1",
     "body-parser": "~1.18.2",
     "config": "^1.29.2",
     "cookie-parser": "~1.4.3",

@@ -5,9 +5,16 @@ import * as actionTypes from './action-types'
 import * as repository from './repository'
 
 function * getAll () {
-  yield put(actionCreators.loadTasksStarted())
-  const tasks = yield call(repository.getAll)
-  yield put(actionCreators.loadTasksSucceeded(tasks))
+  try {
+    if (localStorage.getItem('idToken')) {
+      yield put(actionCreators.loadTasksStarted())
+      const tasks = yield call(repository.getAll)
+      yield put(actionCreators.loadTasksSucceeded(tasks))
+      console.log('getAll saga')
+    }
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 function * add (action) {

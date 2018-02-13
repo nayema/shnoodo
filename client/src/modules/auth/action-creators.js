@@ -7,12 +7,15 @@ export const loginRequestStarted = createAction(
 )
 export const loginRequestSucceeded = createAction(
   actionTypes.LOGIN_REQUEST_SUCCEEDED,
-  (profile) => ({ profile })
+  (profile) => (profile)
 )
-export const loginErrorSucceeded = createAction(
-  actionTypes.LOGIN_ERROR_SUCCEEDED,
+export const loginRequestErrored = createAction(
+  actionTypes.LOGIN_REQUEST_ERRORED,
   (error) => error
 )
-export const logoutSucceeded = createAction(
-  actionTypes.LOGOUT_SUCCEEDED
+export const logoutRequestStarted = createAction(
+  actionTypes.LOGOUT_REQUEST_STARTED
+)
+export const logoutRequestSucceeded = createAction(
+  actionTypes.LOGOUT_REQUEST_SUCCEEDED
 )

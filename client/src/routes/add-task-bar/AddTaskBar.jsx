@@ -27,8 +27,10 @@ const styles = theme => ({
 
 const categories = ['Personal', 'Work', 'Hobbies', 'Errands']
 
-const AddTaskBar = ({ classes, newTask, newTaskCategory, addTaskStarted, changeNewTask }) => (
+const AddTaskBar = ({ classes, newTask, newTaskCategory, addTaskStarted, changeNewTask, loginRequestStarted, logoutRequestStarted }) => (
   <div className={classes.root}>
+    <Button onClick={loginRequestStarted}>Login</Button>
+    <Button onClick={logoutRequestStarted}>Logout</Button>
     <Grid container spacing={24}>
       <Grid item xs>
         <TextField

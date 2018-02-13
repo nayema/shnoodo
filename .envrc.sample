@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+export JWKS_URI=
+export AUTH0_AUDIENCE=
+export AUTH0_ISSUER=

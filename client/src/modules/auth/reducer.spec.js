@@ -48,11 +48,11 @@ describe('when handling logging in', () => {
 })
 
 describe('when handling login errors', () => {
-  it('succeeds login error message', () => {
+  it('sets error message', () => {
     const error = 'fake error'
-    const loginErrorSucceededAction = actionCreators.loginErrorSucceeded(error)
+    const loginRequestErrored = actionCreators.loginRequestErrored(error)
 
-    const nextState = reducer(undefined, loginErrorSucceededAction)
+    const nextState = reducer(undefined, loginRequestErrored)
 
     expect(nextState).toEqual({
       isAuthenticated: false,
@@ -65,9 +65,9 @@ describe('when handling login errors', () => {
 
 describe('when handling logging out', () => {
   it('succeeds logging out', () => {
-    const logoutSucceededAction = actionCreators.logoutSucceeded()
+    const logoutRequestSucceededAction = actionCreators.logoutRequestSucceeded()
 
-    const nextState = reducer(undefined, logoutSucceededAction)
+    const nextState = reducer(undefined, logoutRequestSucceededAction)
 
     expect(nextState).toEqual({
       isAuthenticated: false,
