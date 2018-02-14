@@ -1,38 +1,39 @@
 import { handleActions } from 'redux-actions'
 
 import * as actionTypes from './action-types'
-// import * as AuthService from '../../auth-utils/AuthService'
 
 const initialState = {
   isAuthenticated: false,
-  isFetching: false,
-  profile: {},
+  isAuthenticating: false,
+  profile: null,
+  idToken: null,
   error: null
 }
 
 const reducer = handleActions({
   [actionTypes.LOGIN_REQUEST_STARTED]: (state) => ({
     ...state,
-    isFetching: true,
-    error: null
+    isAuthenticated: false,
+    isAuthenticating: true
   }),
   [actionTypes.LOGIN_REQUEST_SUCCEEDED]: (state, action) => ({
     ...state,
     isAuthenticated: true,
-    isFetching: false,
-    profile: action.payload
+    isAuthenticating: false,
+    profile: action.payload.profile,
+    idToken: action.payload.idToken
   }),
   [actionTypes.LOGIN_REQUEST_ERRORED]: (state, action) => ({
     ...state,
     isAuthenticated: false,
-    isFetching: false,
-    profile: {},
+    isAuthenticating: false,
     error: action.payload
   }),
   [actionTypes.LOGOUT_REQUEST_SUCCEEDED]: (state) => ({
     ...state,
     isAuthenticated: false,
-    profile: {}
+    profile: null,
+    idToken: null
   })
 }, initialState)
 

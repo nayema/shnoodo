@@ -7,7 +7,7 @@ export const loginRequestStarted = createAction(
 )
 export const loginRequestSucceeded = createAction(
   actionTypes.LOGIN_REQUEST_SUCCEEDED,
-  (profile) => (profile)
+  (profile, idToken) => ({ profile, idToken })
 )
 export const loginRequestErrored = createAction(
   actionTypes.LOGIN_REQUEST_ERRORED,

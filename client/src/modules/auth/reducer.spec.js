@@ -11,8 +11,9 @@ describe('reducer', () => {
 
     expect(nextState).toEqual({
       isAuthenticated: false,
-      isFetching: false,
-      profile: {},
+      isAuthenticating: false,
+      profile: null,
+      idToken: null,
       error: null
     })
   })
@@ -24,26 +25,25 @@ describe('when handling logging in', () => {
 
     const nextState = reducer(undefined, loginRequestStartedAction)
 
-    expect(nextState).toEqual({
+    expect(nextState).toEqual(expect.objectContaining({
       isAuthenticated: false,
-      isFetching: true,
-      profile: {},
-      error: null
-    })
+      isAuthenticating: true
+    }))
   })
 
   it('succeeds logging in', () => {
     const profile = { fakeProperty: 'fakeValue' }
-    const loginRequestSucceededAction = actionCreators.loginRequestSucceeded(profile)
+    const idToken = 'some id token'
+    const loginRequestSucceededAction = actionCreators.loginRequestSucceeded(profile, idToken)
 
     const nextState = reducer(undefined, loginRequestSucceededAction)
 
-    expect(nextState).toEqual({
+    expect(nextState).toEqual(expect.objectContaining({
       isAuthenticated: true,
-      isFetching: false,
+      isAuthenticating: false,
       profile: { fakeProperty: 'fakeValue' },
-      error: null
-    })
+      idToken: 'some id token'
+    }))
   })
 })
 
@@ -54,12 +54,11 @@ describe('when handling login errors', () => {
 
     const nextState = reducer(undefined, loginRequestErrored)
 
-    expect(nextState).toEqual({
+    expect(nextState).toEqual(expect.objectContaining({
       isAuthenticated: false,
-      isFetching: false,
-      profile: {},
+      isAuthenticating: false,
       error: 'fake error'
-    })
+    }))
   })
 })
 
@@ -69,11 +68,10 @@ describe('when handling logging out', () => {
 
     const nextState = reducer(undefined, logoutRequestSucceededAction)
 
-    expect(nextState).toEqual({
+    expect(nextState).toEqual(expect.objectContaining({
       isAuthenticated: false,
-      isFetching: false,
-      profile: {},
-      error: null
-    })
+      profile: null,
+      idToken: null
+    }))
   })
 })
