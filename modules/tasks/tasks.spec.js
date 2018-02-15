@@ -22,12 +22,13 @@ describe('tasks', () => {
     expect(tasks[0]).toEqual(expect.objectContaining({ 'name': 'Some Task', 'category': 'Some Category' }))
   })
 
-  xit('adds a new task', async () => {
+  it('adds a new task', async () => {
     const task = { 'name': 'Some Task', 'category': 'Some Category' }
 
     const response = await request(app)
       .post('/tasks/')
       .set('Content-Type', 'application/json')
+      .set('Authorization', 'Bearer ' + testJwt)
       .send(task)
 
     expect(response.statusCode).toBe(200)
@@ -39,13 +40,14 @@ describe('tasks', () => {
     }))
   })
 
-  xit('removes an existing task', async () => {
+  it('removes an existing task', async () => {
     await Task.query().insert({ 'id': 999, 'name': 'XXXXX', 'category': 'XXXXX' })
     const task = { 'id': 999 }
 
     const response = await request(app)
       .delete('/tasks/')
       .set('Content-Type', 'application/json')
+      .set('Authorization', 'Bearer ' + testJwt)
       .send(task)
 
     expect(response.statusCode).toBe(200)
