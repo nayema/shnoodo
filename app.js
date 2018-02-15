@@ -26,7 +26,6 @@ const jwtCheck = jwt({
   issuer: process.env.AUTH0_ISSUER,
   algorithms: ['RS256']
 })
-// app.use(jwtCheck)
 
 app.use('/tasks', jwtCheck, tasksRouter)
 

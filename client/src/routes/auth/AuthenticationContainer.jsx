@@ -6,7 +6,7 @@ import Authentication from './Authentication'
 
 function mapStateToProps (state) {
   return {
-    isAuthenticated: auth.selectors.isAuthenticated(state)
+    isAuthenticated: state.auth.isAuthenticated
   }
 }
 

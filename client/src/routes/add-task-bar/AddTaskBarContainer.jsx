@@ -1,14 +1,12 @@
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import * as auth from '../../modules/auth'
 import * as tasks from '../../modules/tasks'
 import TaskBar from './AddTaskBar'
 
 function mapStateToProps (state) {
   return {
-    newTask: state.tasks.newTask,
-    isAuthenticated: auth.selectors.isAuthenticated(state)
+    newTask: state.tasks.newTask
   }
 }
 
