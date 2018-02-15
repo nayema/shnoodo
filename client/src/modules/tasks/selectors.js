@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect'
 
-const getVisibilityFilter = (state) => state.visibilityFilter
-const getTasks = (state) => state.tasks
+const getVisibilityFilter = (state) => state.tasks.visibilityFilter
+const getTasks = (state) => state.tasks.tasks
 
 export const getVisibleTasks = createSelector(
   [getVisibilityFilter, getTasks],
