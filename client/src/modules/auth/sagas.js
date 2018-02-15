@@ -42,13 +42,15 @@ function * onLoad () {
     })
 
   try {
+    if (localStorage.getItem('profile') && localStorage.getItem('idToken')) {
+      yield put(actionCreators.alreadyAuthenticated(localStorage.getItem('profile'), localStorage.getItem('idToken')))
+    }
     const { profile, idToken } = yield call(configureLock)
     localStorage.setItem('profile', profile)
     localStorage.setItem('idToken', idToken)
 
-    yield put(actionCreators.loginRequestSucceeded(profile))
+    yield put(actionCreators.loginRequestSucceeded(profile, idToken))
     yield put(push('/'))
-    console.log('onLoad saga')
   } catch (error) {
     yield put(actionCreators.loginRequestErrored(error))
     yield put(push('/'))

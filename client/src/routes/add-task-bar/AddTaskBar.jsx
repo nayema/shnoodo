@@ -27,10 +27,8 @@ const styles = theme => ({
 
 const categories = ['Personal', 'Work', 'Hobbies', 'Errands']
 
-const AddTaskBar = ({ classes, newTask, newTaskCategory, addTaskStarted, changeNewTask, loginRequestStarted, logoutRequestStarted }) => (
+const AddTaskBar = ({ classes, newTask, newTaskCategory, addTaskStarted, changeNewTask }) => (
   <div className={classes.root}>
-    <Button onClick={loginRequestStarted}>Login</Button>
-    <Button onClick={logoutRequestStarted}>Logout</Button>
     <Grid container spacing={24}>
       <Grid item xs>
         <TextField
@@ -72,7 +70,9 @@ const AddTaskBar = ({ classes, newTask, newTaskCategory, addTaskStarted, changeN
           color="primary"
           aria-label="add"
           className={classes.button}
-          onClick={() => {addTaskStarted(newTask)}}
+          onClick={() => {
+            addTaskStarted(newTask)
+          }}
         >
           <AddIcon/>
         </Button>

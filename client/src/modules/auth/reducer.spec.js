@@ -32,7 +32,7 @@ describe('when handling logging in', () => {
   })
 
   it('succeeds logging in', () => {
-    const profile = { fakeProperty: 'fakeValue' }
+    const profile = { fakeProfile: 'fakeValue' }
     const idToken = 'some id token'
     const loginRequestSucceededAction = actionCreators.loginRequestSucceeded(profile, idToken)
 
@@ -41,7 +41,7 @@ describe('when handling logging in', () => {
     expect(nextState).toEqual(expect.objectContaining({
       isAuthenticated: true,
       isAuthenticating: false,
-      profile: { fakeProperty: 'fakeValue' },
+      profile: { fakeProfile: 'fakeValue' },
       idToken: 'some id token'
     }))
   })
@@ -58,6 +58,22 @@ describe('when handling login errors', () => {
       isAuthenticated: false,
       isAuthenticating: false,
       error: 'fake error'
+    }))
+  })
+})
+
+describe('when handling page refresh', () => {
+  it('remains authenticated', () => {
+    const profile = { fakeProfile: 'fakeValue' }
+    const idToken = 'some id token'
+    const alreadyAuthenticatedAction = actionCreators.alreadyAuthenticated(profile, idToken)
+
+    const nextState = reducer(undefined, alreadyAuthenticatedAction)
+
+    expect(nextState).toEqual(expect.objectContaining({
+      isAuthenticated: true,
+      profile: { fakeProfile: 'fakeValue' },
+      idToken: 'some id token'
     }))
   })
 })

@@ -34,6 +34,12 @@ const reducer = handleActions({
     isAuthenticated: false,
     profile: null,
     idToken: null
+  }),
+  [actionTypes.ALREADY_AUTHENTICATED]: (state, action) => ({
+    ...state,
+    isAuthenticated: true,
+    profile: action.payload.profile,
+    idToken: action.payload.idToken
   })
 }, initialState)
 

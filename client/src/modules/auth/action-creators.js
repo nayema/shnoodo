@@ -19,3 +19,7 @@ export const logoutRequestStarted = createAction(
 export const logoutRequestSucceeded = createAction(
   actionTypes.LOGOUT_REQUEST_SUCCEEDED
 )
+export const alreadyAuthenticated = createAction(
+  actionTypes.ALREADY_AUTHENTICATED,
+  (profile, idToken) => ({ profile, idToken })
+)
