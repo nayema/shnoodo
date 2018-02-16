@@ -1,28 +1,27 @@
-const Task = require('./Task')
+const TasksRepository = require('./TasksRepository')
 
 class TasksController {
   static async all (req, res) {
-    const tasks = await Task
-      .query()
-      .where('user_id', '=', req.user.sub)
+    const tasks = await TasksRepository.getAllTasks(
+      req.user.sub
+    )
     return res.send(tasks)
   }
 
   static async add (req, res) {
-    const task = await Task.query().insert({
-      'name': req.body['name'],
-      'category': req.body['category'],
-      'user_id': req.user.sub
-    })
+    const task = await TasksRepository.addTask(
+      req.body['name'],
+      req.body['category'],
+      req.user.sub
+    )
     return res.send(task)
   }
 
   static async remove (req, res) {
-    await Task
-      .query()
-      .delete()
-      .where('id', '=', req.body['id'])
-      .andWhere('user_id', '=', req.user.sub)
+    await TasksRepository.removeTask(
+      req.body['id'],
+      req.user.sub
+    )
     return res.end()
   }
 }
