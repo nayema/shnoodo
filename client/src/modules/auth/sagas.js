@@ -58,22 +58,14 @@ function * onLoad () {
 }
 
 function * login () {
-  const loginLock = () =>
-    new Promise((resolve, reject) => {
-      lock.show()
-    })
-  yield call(loginLock)
+  yield call(() => lock.show())
 }
 
 function * logout () {
   localStorage.removeItem('profile')
   localStorage.removeItem('idToken')
 
-  const logoutLock = () =>
-    new Promise((resolve, reject) => {
-      lock.logout({ returnTo: 'http://localhost:3000/' })
-    })
-  yield call(logoutLock)
+  yield call(() => lock.logout({ returnTo: 'http://localhost:3000/' }))
 }
 
 function * watchLogin () {

@@ -1,6 +1,4 @@
-import { camelizeKeys } from 'humps'
-
-import { request } from '../common'
+import { camelizeKeys, decamelizeKeys } from 'humps'
 
 export async function getAll () {
   const response = await fetch('/tasks/', {
@@ -12,14 +10,24 @@ export async function getAll () {
 }
 
 export async function add (task) {
-  const response = await request('/tasks/', task, {
+  const response = await fetch('/tasks/', {
+    headers: new Headers({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${localStorage.getItem('idToken')}`
+    }),
+    body: JSON.stringify(decamelizeKeys(task)),
     method: 'post'
   })
   return camelizeKeys(await response.json())
 }
 
 export async function remove (task) {
-  await request('/tasks/', task, {
+  await fetch('/tasks/', {
+    headers: new Headers({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${localStorage.getItem('idToken')}`
+    }),
+    body: JSON.stringify(decamelizeKeys(task)),
     method: 'delete'
   })
 }
