@@ -1,28 +1,32 @@
 const Task = require('./Task')
 
 class TasksRepository {
-  static async getAllTasks (userId) {
-    return await Task
-      .query()
-      .where('user_id', '=', userId)
+  constructor (userId) {
+    this.userId = userId
   }
 
-  static async addTask (name, category, userId) {
+  async getAllTasks () {
+    return await Task
+      .query()
+      .where('user_id', '=', this.userId)
+  }
+
+  async addTask (name, category) {
     return await Task
       .query()
       .insert({
         'name': name,
         'category': category,
-        'user_id': userId
+        'user_id': this.userId
       })
   }
 
-  static async removeTask (taskId, userId) {
+  async removeTask (taskId) {
     return await Task
       .query()
       .delete()
       .where('id', '=', taskId)
-      .andWhere('user_id', '=', userId)
+      .andWhere('user_id', '=', this.userId)
   }
 }
 
