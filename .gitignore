@@ -77,7 +77,6 @@ typings/
 
 # dotenv environment variables file
 .env
-.envrc
 
 # secrets
 client/src/auth-utils/config.js
