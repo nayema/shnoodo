@@ -4,7 +4,10 @@ import { push } from 'react-router-redux'
 
 import * as actionCreators from './action-creators'
 import * as actionTypes from './action-types'
-import config from '../../auth-utils/config'
+
+const AUTH0_CLIENT_ID = 'olhFX4vyTTMWBUS7pf5Qbs30TmQ7jq6T'
+const AUTH0_DOMAIN = 'nayema.auth0.com'
+const REDIRECT_URL = 'http://localhost:3000/callback'
 
 let lock
 
@@ -12,11 +15,11 @@ function * onLoad () {
   const configureLock = () =>
     new Promise((resolve, reject) => {
       lock = new Auth0Lock(
-        config.AUTH0_CLIENT_ID,
-        config.AUTH0_DOMAIN,
+        AUTH0_CLIENT_ID,
+        AUTH0_DOMAIN,
         {
           auth: {
-            redirectUrl: config.REDIRECT_URL,
+            redirectUrl: REDIRECT_URL,
             responseType: 'token id_token'
           },
           languageDictionary: { title: 'Shnoodo (Development)' }
