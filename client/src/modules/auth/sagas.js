@@ -64,7 +64,7 @@ function * logout () {
   localStorage.removeItem('profile')
   localStorage.removeItem('idToken')
 
-  yield call(() => lock.logout({ returnTo: 'http://localhost:3000/' }))
+  yield call(() => lock.logout({ returnTo: process.env.REACT_APP_LOGOUT_URL }))
 }
 
 function * watchLogin () {

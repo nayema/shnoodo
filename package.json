@@ -9,7 +9,8 @@
     "migrate-all-rollback": "NODE_ENV=test knex migrate:rollback && knex migrate:rollback",
     "migrate-all-latest": "NODE_ENV=test knex migrate:latest && knex migrate:latest",
     "migrate-all-redo": "npm run migrate-all-rollback && npm run migrate-all-latest",
-    "heroku-postbuild": "node_modules/.bin/knex migrate:latest && cd client/ && npm install && npm run build"
+    "heroku-postbuild": "node_modules/.bin/knex migrate:latest && cd client/ && npm install && npm run build",
+    "heroku-update-prod-env-vars": "sed 's/#[^(\"|'')]*$//;s/^#.*$//' .env.production | xargs heroku config:set --app=shnoodo"
   },
   "dependencies": {
     "body-parser": "~1.18.2",
