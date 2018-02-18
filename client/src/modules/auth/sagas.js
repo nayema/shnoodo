@@ -5,24 +5,20 @@ import { push } from 'react-router-redux'
 import * as actionCreators from './action-creators'
 import * as actionTypes from './action-types'
 
-const AUTH0_CLIENT_ID = 'olhFX4vyTTMWBUS7pf5Qbs30TmQ7jq6T'
-const AUTH0_DOMAIN = 'nayema.auth0.com'
-const REDIRECT_URL = 'http://localhost:3000/callback'
-
 let lock
 
 function * onLoad () {
   const configureLock = () =>
     new Promise((resolve, reject) => {
       lock = new Auth0Lock(
-        AUTH0_CLIENT_ID,
-        AUTH0_DOMAIN,
+        process.env.REACT_APP_AUTH0_CLIENT_ID,
+        process.env.REACT_APP_AUTH0_DOMAIN,
         {
           auth: {
-            redirectUrl: REDIRECT_URL,
+            redirectUrl: process.env.REACT_APP_REDIRECT_URL,
             responseType: 'token id_token'
           },
-          languageDictionary: { title: 'Shnoodo (Development)' }
+          languageDictionary: { title: process.env.REACT_APP_TITLE }
         }
       )
 
