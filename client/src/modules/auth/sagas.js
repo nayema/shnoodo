@@ -1,70 +1,31 @@
-import Auth0Lock from 'auth0-lock'
-import { put, call, takeEvery, all, fork } from 'redux-saga/effects'
+import { all, call, fork, put, takeEvery } from 'redux-saga/effects'
 import { push } from 'react-router-redux'
 
 import * as actionCreators from './action-creators'
 import * as actionTypes from './action-types'
-
-let lock
+import * as authentication from './authentication'
 
 function * onLoad () {
-  const configureLock = () =>
-    new Promise((resolve, reject) => {
-      lock = new Auth0Lock(
-        process.env.REACT_APP_AUTH0_CLIENT_ID,
-        process.env.REACT_APP_AUTH0_DOMAIN,
-        {
-          auth: {
-            redirectUrl: process.env.REACT_APP_REDIRECT_URL,
-            responseType: 'token id_token'
-          },
-          languageDictionary: { title: process.env.REACT_APP_TITLE }
-        }
-      )
-
-      lock.on('authenticated', (authResult) => {
-        lock.getUserInfo(
-          authResult.accessToken,
-          (error, profile) => {
-            if (!error) {
-              lock.hide()
-              resolve({ profile, idToken: authResult.idToken })
-            }
-          }
-        )
-      })
-
-      lock.on('unrecoverable_error', (error) => {
-        lock.hide()
-        reject(error)
-      })
-    })
-
-  try {
-    if (localStorage.getItem('profile') && localStorage.getItem('idToken')) {
-      yield put(actionCreators.alreadyAuthenticated(localStorage.getItem('profile'), localStorage.getItem('idToken')))
+  if (authentication.isAuthenticated()) {
+    yield put(actionCreators.alreadyAuthenticated(authentication.getProfile(), authentication.getIdToken()))
+  } else {
+    try {
+      yield call(authentication.handleLoginRequest)
+      yield put(actionCreators.loginRequestSucceeded(authentication.getProfile(), authentication.getIdToken()))
+      yield put(push('/'))
+    } catch (error) {
+      yield put(actionCreators.loginRequestErrored(error))
+      yield put(push('/'))
     }
-    const { profile, idToken } = yield call(configureLock)
-    localStorage.setItem('profile', profile)
-    localStorage.setItem('idToken', idToken)
-
-    yield put(actionCreators.loginRequestSucceeded(profile, idToken))
-    yield put(push('/'))
-  } catch (error) {
-    yield put(actionCreators.loginRequestErrored(error))
-    yield put(push('/'))
   }
 }
 
 function * login () {
-  yield call(() => lock.show())
+  yield call(authentication.login)
 }
 
 function * logout () {
-  localStorage.removeItem('profile')
-  localStorage.removeItem('idToken')
-
-  yield call(() => lock.logout({ returnTo: process.env.REACT_APP_LOGOUT_URL }))
+  yield call(authentication.logout)
 }
 
 function * watchLogin () {
