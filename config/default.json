@@ -2,10 +2,6 @@
   "db": {
     "client": "postgresql",
     "connection": {
-      "user": "postgres",
-      "password": "",
-      "host": "localhost",
-      "port": 5432,
       "database": "shnoodo_development"
     }
   }
