@@ -1,0 +1,145 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots TaskList with completed task 1`] = `
+<div
+  className="TaskList-root-49"
+>
+  <table
+    className="MuiTable-root-52 TaskList-table-50"
+  >
+    <tbody>
+      <tr
+        className="MuiTableRow-root-53"
+      >
+        <td
+          aria-sort={null}
+          className="MuiTableCell-root-58 MuiTableCell-paddingDefault-63 MuiTableCell-typeBody-61 task"
+          onClick={[Function]}
+        >
+          <div
+            className="completedTask"
+          >
+            Some Name
+            , 
+            Some Category
+          </div>
+        </td>
+        <td
+          aria-sort={null}
+          className="MuiTableCell-root-58 MuiTableCell-numeric-59 MuiTableCell-paddingDefault-63 MuiTableCell-typeBody-61"
+        >
+          <button
+            aria-label="delete"
+            className="MuiButtonBase-root-81 MuiButton-root-66 MuiButton-raised-71 MuiButton-fab-76 MuiButton-mini-77 MuiButton-raisedSecondary-74 TaskList-button-51"
+            disabled={false}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            tabIndex={0}
+            type="button"
+          >
+            <span
+              className="MuiButton-label-67"
+            >
+              <svg
+                aria-hidden="true"
+                className="MuiSvgIcon-root-83 MuiSvgIcon-fontSize-89"
+                color={undefined}
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"
+                />
+              </svg>
+            </span>
+            <span
+              className="MuiTouchRipple-root-90"
+            />
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`Storyshots TaskList with one task 1`] = `
+<div
+  className="TaskList-root-1"
+>
+  <table
+    className="MuiTable-root-4 TaskList-table-2"
+  >
+    <tbody>
+      <tr
+        className="MuiTableRow-root-5"
+      >
+        <td
+          aria-sort={null}
+          className="MuiTableCell-root-10 MuiTableCell-paddingDefault-15 MuiTableCell-typeBody-13 task"
+          onClick={[Function]}
+        >
+          <div
+            className=""
+          >
+            Some Name
+            , 
+            Some Category
+          </div>
+        </td>
+        <td
+          aria-sort={null}
+          className="MuiTableCell-root-10 MuiTableCell-numeric-11 MuiTableCell-paddingDefault-15 MuiTableCell-typeBody-13"
+        >
+          <button
+            aria-label="delete"
+            className="MuiButtonBase-root-33 MuiButton-root-18 MuiButton-raised-23 MuiButton-fab-28 MuiButton-mini-29 MuiButton-raisedSecondary-26 TaskList-button-3"
+            disabled={false}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            tabIndex={0}
+            type="button"
+          >
+            <span
+              className="MuiButton-label-19"
+            >
+              <svg
+                aria-hidden="true"
+                className="MuiSvgIcon-root-35 MuiSvgIcon-fontSize-41"
+                color={undefined}
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"
+                />
+              </svg>
+            </span>
+            <span
+              className="MuiTouchRipple-root-42"
+            />
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
