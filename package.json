@@ -20,7 +20,7 @@
     "debug": "~4.1.1",
     "express": "~4.15.5",
     "express-jwt": "^5.3.0",
-    "jwks-rsa": "^1.2.1",
+    "jwks-rsa": "^1.6.0",
     "knex": "^0.14.2",
     "morgan": "~1.9.1",
     "objection": "^0.9.4",
